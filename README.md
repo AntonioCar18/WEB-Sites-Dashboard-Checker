@@ -17,7 +17,7 @@ The system is built with a focus on reliability and real-time data visualization
 3. Automated Checker: Every minute, a Cron Job executes checker.py, which pings all configured sites and records latency and status.
 4. Real-time Insights: The React Dashboard fetches the latest results from ping_results.json and displays them in a clean, filterable table.
 
-#💡 AI Integration (Future Roadmap)
+# 💡 AI Integration (Future Roadmap)
 
 -> Anomaly Detection: Implementing LLMs to analyze latency patterns and predict potential server failures.
 -> Intelligent Reporting: AI-generated weekly summaries of site performance.
