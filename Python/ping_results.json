@@ -1,0 +1,30 @@
+{
+    "https://oispider.hr": [
+        {
+            "website": "https://oispider.hr",
+            "status": "UP",
+            "latency": 635,
+            "timestamp": "14:20:57",
+            "ssl_cert": "N/A",
+            "domain_expiry": "N/A"
+        },
+        {
+            "website": "https://oispider.hr",
+            "status": "UP",
+            "latency": 587,
+            "timestamp": "14:24:44",
+            "ssl_cert": "N/A",
+            "domain_expiry": "N/A"
+        }
+    ],
+    "https://4solutions.hr": [
+        {
+            "website": "https://4solutions.hr",
+            "status": "UP",
+            "latency": 5045,
+            "timestamp": "14:24:45",
+            "ssl_cert": "N/A",
+            "domain_expiry": "N/A"
+        }
+    ]
+}

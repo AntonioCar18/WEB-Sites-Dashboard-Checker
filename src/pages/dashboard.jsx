@@ -4,21 +4,22 @@ import DashboardTCard from '../components/dashboard_tcard'
 import DashboardPCard from '../components/dashboard_pcard'
 import LogTable from '../components/log_table'
 import React, { useState, useEffect } from 'react';
-import addPage from '../components/addPage';
+import AddPage from '../components/addPage';
 
 const Dashboard = () => {
     // 1. Inicijaliziramo kao objekt {} jer je takav JSON format
     const [pingData, setPingData] = useState({});
+    const [showAddPage, setShowAddPage] = useState(false);
 
-    const loadData = () => {
-        fetch('/ping_results.json')
-            .then(response => response.json())
-            .then(data => {
-                setPingData(data);
-                console.log("Podaci uspješno učitani", data);
-            })
-            .catch(error => console.error('Error fetching ping data:', error));
-    }
+   const loadData = () => {
+    fetch('/api/get-results')
+        .then(response => response.json())
+        .then(data => {
+            setPingData(data);
+            console.log("Podaci uspješno učitani iz Pythona", data);
+        })
+        .catch(error => console.error('Error fetching ping data:', error));
+}
 
     useEffect(() => {
         loadData();
@@ -61,11 +62,15 @@ const Dashboard = () => {
                 </div>
                 <div>
                     <button 
-                        onClick={addPage}
+                        onClick={() => setShowAddPage(true)}
                         className="cursor-pointer bg-gray-800 text-white font-bold py-4 px-8 rounded mr-16 hover:bg-gray-700 transition-all"
                     >
                         Add new page
                     </button>
+                    {showAddPage && <AddPage onClose={() => {
+                        setShowAddPage(false);
+                        loadData(); 
+                        }} />}
                 </div>
             </div>
 
