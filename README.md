@@ -20,5 +20,7 @@ The system is built with a focus on reliability and real-time data visualization
 # 💡 AI Integration (Future Roadmap)
 
 -> Anomaly Detection: Implementing LLMs to analyze latency patterns and predict potential server failures.
+
 -> Intelligent Reporting: AI-generated weekly summaries of site performance.
+
 -> Automated Troubleshooting: Integration with GPT-4/Claude to provide instant fix suggestions when a site goes down.
