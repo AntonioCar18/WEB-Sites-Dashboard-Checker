@@ -4,6 +4,7 @@ import DashboardTCard from '../components/dashboard_tcard'
 import DashboardPCard from '../components/dashboard_pcard'
 import LogTable from '../components/log_table'
 import React, { useState, useEffect } from 'react';
+import addPage from '../components/addPage';
 
 const Dashboard = () => {
     // 1. Inicijaliziramo kao objekt {} jer je takav JSON format
@@ -60,10 +61,10 @@ const Dashboard = () => {
                 </div>
                 <div>
                     <button 
-                        onClick={loadData}
-                        className="cursor-pointer bg-gray-800 text-white font-bold py-2 px-8 rounded mr-16 hover:bg-gray-700 transition-all"
+                        onClick={addPage}
+                        className="cursor-pointer bg-gray-800 text-white font-bold py-4 px-8 rounded mr-16 hover:bg-gray-700 transition-all"
                     >
-                        Sync
+                        Add new page
                     </button>
                 </div>
             </div>
