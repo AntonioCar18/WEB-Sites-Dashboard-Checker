@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [showAddPage, setShowAddPage] = useState(false);
 
    const loadData = () => {
-    fetch('/api/get-results')
+    fetch('/ping_results.json')
         .then(response => response.json())
         .then(data => {
             setPingData(data);

@@ -6,10 +6,9 @@ import os
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
-CONFIG_FILE = "config.json"
-RESULTS_FILE = "ping_results.json"
+CONFIG_FILE = "/var/www/site-checker/config.json"
+RESULTS_FILE = "/var/www/site-checker/ping_results.json"
 
-# Ruta za dodavanje nove stranice (AddPage.jsx šalje podatke ovdje)
 @app.route('/add-site', methods=['POST'])
 def add_site():
     data = request.json
@@ -22,7 +21,12 @@ def add_site():
     if os.path.exists(CONFIG_FILE):
         with open(CONFIG_FILE, 'r') as f:
             try:
-                sites = json.load(f)
+                content = json.load(f)
+                # KLJUČNI POPRAVAK: Provjera je li učitano lista
+                if isinstance(content, list):
+                    sites = content
+                else:
+                    sites = [] # Ako je {} (dict), resetiraj na listu
             except:
                 sites = []
 
@@ -34,7 +38,6 @@ def add_site():
     
     return jsonify({"message": "Already exists"}), 200
 
-# Ruta za dohvat rezultata (Dashboard će vući podatke odavde)
 @app.route('/get-results', methods=['GET'])
 def get_results():
     if os.path.exists(RESULTS_FILE):
@@ -47,5 +50,4 @@ def get_results():
     return jsonify({}), 200
 
 if __name__ == '__main__':
-    # Server radi na portu 5000
-    app.run(port=5001, debug=True)
+    app.run(host='127.0.0.1', port=5001, debug=True)
