@@ -10,6 +10,7 @@ const Dashboard = () => {
     // 1. Inicijaliziramo kao objekt {} jer je takav JSON format
     const [pingData, setPingData] = useState({});
     const [showAddPage, setShowAddPage] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
 
    const loadData = () => {
     fetch('/ping_results.json')
@@ -82,20 +83,24 @@ const Dashboard = () => {
                 <DashboardTCard icon={<span>⏱️</span>} title="Avg. latency (ms)" count={avg_latency} />
             </div>
 
-            {/* Search Bar */}
+            {/* Search Bar - Filtrira kartice prema URL-u */}
             <div className='relative px-16 mt-8 mb-4'>
                 <input 
                     className='border-2 border-gray-300 rounded-2xl p-3 sm:w-full lg:w-1/4 focus:border-gray-800 outline-none transition-all' 
                     placeholder='Search...' 
                     type="text" 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
 
             {/* PCards - Dinamički generiramo karticu s grafom za svaku stranicu */}
             <div className="w-full h-full px-16 mt-4 lg:grid grid-cols-4 gap-8">
-                {urls.map((url, index) => {
-                    const history = pingData[url];
-                    const current = history[history.length - 1];
+                {urls
+                    .filter(url => url.includes(searchTerm))
+                    .map((url, index) => {
+                        const history = pingData[url];
+                        const current = history[history.length - 1];
 
                     return (
                         <DashboardPCard 

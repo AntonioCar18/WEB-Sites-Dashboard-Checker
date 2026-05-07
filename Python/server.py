@@ -13,6 +13,7 @@ RESULTS_FILE = "/var/www/site-checker/ping_results.json"
 def add_site():
     data = request.json
     new_url = data.get('url')
+    new_name = data.get('name')
 
     if not new_url:
         return jsonify({"error": "URL is missing"}), 400
